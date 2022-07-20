@@ -6,6 +6,8 @@
 //   age: 34
 // };
 
+// ENUM, es un tipo a medida
+
 enum Permission { ADMIN = 'ADMIN', READ_ONLY= 'READ_ONLY', AUTHOR= 100};
 
 // MODO CORRECTO: dejar que TS infiera los tipos, no hace falta hacer lo de arriba (verborreico).
