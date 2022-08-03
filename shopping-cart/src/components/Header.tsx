@@ -1,9 +1,9 @@
 import React from 'react'
 import { Badge, Dropdown, FormControl, Navbar, Container } from 'react-bootstrap';
 import {FaShoppingCart} from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { Link, Router, Routes } from 'react-router-dom';
 
-const Header = () => {
+const Header: React.FC = (): JSX.Element => {
   return (
     <Navbar bg="dark" variant="dark" style={{height: 80, backgroundColor: 'black'}}>
       <Container>
@@ -29,3 +29,5 @@ const Header = () => {
 }
 
 export default Header
+
+
