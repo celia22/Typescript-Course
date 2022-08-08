@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import FetchCart from "../services/httpService/fetchCart";
-import { resultProps } from "../interfaces/cartItemsInterface";
+import { cartIemsProps } from "../interfaces/cartItemsInterface";
 import { StoreItem } from "../components/StoreItem";
 
 export const Store = () => {
   const cartItems = FetchCart();
-  const [storeItems, setStoreItems] = useState<resultProps[]>([]);
+  const [storeItems, setStoreItems] = useState<cartIemsProps[]>([]);
 
   useEffect(() => {
     const api = async () => {
@@ -14,8 +14,6 @@ export const Store = () => {
     };
     api();
   }, [storeItems, cartItems]);
-
-  console.log("items", storeItems);
 
   return (
     <>

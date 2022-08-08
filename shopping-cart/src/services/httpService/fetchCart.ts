@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { resultProps } from '../../interfaces/cartItemsInterface';
+import { cartIemsProps } from '../../interfaces/cartItemsInterface';
 
 export default function FetchCart() {
 
-  const [result, setResult] = useState<resultProps[]>([]);
+  const [result, setResult] = useState<cartIemsProps[]>([]);
 
   useEffect(() => {
     const api = async () => {
