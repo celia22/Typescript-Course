@@ -14,6 +14,10 @@ export interface CartItem {
 }
 
 export interface CartContextFunctions {
+    openCart: () => void,
+    closeCart: () => void,
+    cartQuantity: number,
+    cartItems: CartItem[],
     getItemsQuantity: (id: number) => number
     increaseCartQuantity: (id: number) => void
     decreaseCartQuantity: (id: number) => void

@@ -3,6 +3,7 @@ import {
   CartContextFunctions,
   CartItem,
 } from "../interfaces/cartItemsInterface";
+import {ShoppingCart} from '../components/ShoppingCart'
 
 type CartProviderProps = {
   children: ReactNode;
@@ -16,8 +17,7 @@ export const useCartCtx = () => {
 
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-
-  console.log("cartItems", cartItems);
+  const [isOpen, setIsOpen ] = useState(false)
 
   const getItemsQuantity = (id: number) => {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -62,6 +62,13 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     });
   };
 
+  const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
+
+  const openCart = () => setIsOpen(true)
+
+  const closeCart = () => setIsOpen(false)
+
+
   return (
     <CartContext.Provider
       value={{
@@ -69,9 +76,14 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
+        cartItems,
+        cartQuantity,
+        openCart,
+        closeCart
       }}
     >
       {children}
+      <ShoppingCart />
     </CartContext.Provider>
   );
 };
