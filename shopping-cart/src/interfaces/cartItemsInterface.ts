@@ -13,6 +13,7 @@ export interface CartItem {
     quantity: number
 }
 
+// TODO , CREATE NEW CONTEXT OR REDUX TOOLKIT TO FETCH DATA FROM 
 export interface CartContextFunctions {
     openCart: () => void,
     closeCart: () => void,
@@ -21,5 +22,6 @@ export interface CartContextFunctions {
     getItemsQuantity: (id: number) => number
     increaseCartQuantity: (id: number) => void
     decreaseCartQuantity: (id: number) => void
-    removeFromCart: (id: number) => void
+    removeFromCart: (id: number) => void,
+    storeItems: any[]
 }

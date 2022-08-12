@@ -1,9 +1,11 @@
-import { useContext, createContext, ReactNode, useState } from "react";
+import { useContext, createContext, ReactNode, useState, useEffect } from "react";
 import {
   CartContextFunctions,
   CartItem,
 } from "../interfaces/cartItemsInterface";
 import {ShoppingCart} from '../components/ShoppingCart'
+import FetchCart from "../services/httpService/fetchCart";
+import { cartIemsProps } from "../interfaces/cartItemsInterface";
 
 type CartProviderProps = {
   children: ReactNode;
@@ -18,6 +20,17 @@ export const useCartCtx = () => {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen ] = useState(false)
+
+  const storeFetchedItems = FetchCart();
+  const [storeItems, setStoreItems] = useState<cartIemsProps[]>([]);
+
+
+  useEffect(() => {
+    const api = async () => {
+      setStoreItems(storeFetchedItems);
+    };
+    api();
+  }, [storeItems, storeFetchedItems]);
 
   const getItemsQuantity = (id: number) => {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -68,7 +81,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
   const closeCart = () => setIsOpen(false)
 
-
   return (
     <CartContext.Provider
       value={{
@@ -79,11 +91,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         cartItems,
         cartQuantity,
         openCart,
-        closeCart
+        closeCart,
+        storeItems
       }}
     >
       {children}
-      <ShoppingCart />
+      <ShoppingCart isOpen={isOpen}/>
     </CartContext.Provider>
   );
 };

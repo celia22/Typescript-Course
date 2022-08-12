@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import FetchCart from "../services/httpService/fetchCart";
-import { cartIemsProps } from "../interfaces/cartItemsInterface";
 import { StoreItem } from "../components/StoreItem";
+import { useCartCtx } from "../context/CartCtx";
 
 export const Store = () => {
-  const cartItems = FetchCart();
-  const [storeItems, setStoreItems] = useState<cartIemsProps[]>([]);
 
-  useEffect(() => {
-    const api = async () => {
-      setStoreItems(cartItems);
-    };
-    api();
-  }, [storeItems, cartItems]);
 
+  const { storeItems } = useCartCtx();
+
+  console.log(storeItems)
+  
   return (
     <>
       <div>Store</div>
