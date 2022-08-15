@@ -6,6 +6,7 @@ import {
 import {ShoppingCart} from '../components/ShoppingCart'
 import FetchCart from "../services/httpService/fetchCart";
 import { cartIemsProps } from "../interfaces/cartItemsInterface";
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 type CartProviderProps = {
   children: ReactNode;
@@ -18,7 +19,7 @@ export const useCartCtx = () => {
 };
 
 export const CartProvider = ({ children }: CartProviderProps) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', []);
   const [isOpen, setIsOpen ] = useState(false)
 
   const storeFetchedItems = FetchCart();

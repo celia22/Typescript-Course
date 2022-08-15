@@ -7,3 +7,7 @@ export const formatCurrency = (number: string) => {
     const toNumber = parseFloat(number)
    return  CURRENCY_FORMATTER.format(toNumber)
 }
+
+export const formatCurrencyCart = (number: number) => {
+   return  CURRENCY_FORMATTER.format(number)
+}
